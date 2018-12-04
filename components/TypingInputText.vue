@@ -2,75 +2,78 @@
   <li class="textContainer">
     <div class="text">{{ text }}</div>
     <div
+      :class="{ active: isActive}"
       class="inputBox shadow"
-      v-bind:class="{ active: isActive}">
+    >
       <input
+        ref="input"
+        :readonly="isSuccess || !isActive"
+        v-model="input"
         type="text"
         placeholder="위 문장을 입력하세요"
         @keyup="typing"
-        :readonly="isSuccess || !isActive"
-        ref="input"
-        v-model="input"
       />
     </div>
   </li>
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapMutations } from "vuex";
 
 export default {
   props: {
-    text: String,
-    isActive: Boolean
+    text: {
+      type: String,
+      required: true
+    },
+    isActive: {
+      type: String,
+      required: true
+    }
   },
   data() {
     return {
       isComplete: false,
-      input: ''
-    }
-  },
-  methods: {
-    ...mapMutations([
-      'complete'
-    ]),
-    typing(event) {
-      if(this.text === event.target.value) {
-        this.isComplete = true;
-        this.$store.commit('complete');
-      }
-    }
+      input: ""
+    };
   },
   computed: {
-    ...mapState([
-      'isSuccess'
-    ])
+    ...mapState(["isSuccess"])
   },
   updated() {
-    if(this.isActive) this.$refs.input.focus();
-    if(this.isSuccess) this.input = '';
+    if (this.isActive) this.$refs.input.focus();
+    if (this.isSuccess) this.input = "";
+  },
+  methods: {
+    ...mapMutations(["complete"]),
+    typing(event) {
+      if (this.text === event.target.value) {
+        this.isComplete = true;
+        this.$store.commit("complete");
+      }
+    }
   }
-}
+};
 </script>
 
 <style scoped lang="scss">
-  .textContainer {
-    margin-bottom: 2rem;
-    .text {
-      font-size: 1.1rem;
-      margin: 0 0 .5rem;
-      padding: 0 .5rem;
-      font-weight: bold;
+.textContainer {
+  margin-bottom: 2rem;
+  .text {
+    font-size: 1.1rem;
+    margin: 0 0 0.5rem;
+    padding: 0 0.5rem;
+    font-weight: bold;
+  }
+  .inputBox {
+    padding: 0 0.5rem;
+    border: 1px solid white;
+    &.active {
+      border-color: sandybrown;
     }
-    .inputBox {
-      padding: 0 .5rem;
-      border: 1px solid white;
-      &.active {
-        border-color: sandybrown;
-      }
-      input {
-        width: 100%;
-      }
+    input {
+      width: 100%;
     }
   }
+}
 </style>

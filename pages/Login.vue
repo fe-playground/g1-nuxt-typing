@@ -7,15 +7,35 @@
       <form @submit.prevent="onSubmit">
         <div>
           <label for="email">Email</label>
-          <input class="form-control" type="text" name="email" v-model="email" autofocus placeholder="test@test.com" />
+          <input
+            v-model="email"
+            class="form-control"
+            type="text"
+            name="email"
+            autofocus
+            placeholder="test@test.com"
+          />
         </div>
         <div>
           <label for="password">Password</label>
-          <input class="form-control" type="password" v-model="password" placeholder="123123" />
+          <input
+            v-model="password"
+            class="form-control"
+            type="password"
+            placeholder="123123"
+          />
         </div>
-        <button class="btn" :class="{'btn-success': !invalidForm}" type="submit" :disabled="invalidForm">Log In</button>
+        <button
+          :class="{'btn-success': !invalidForm}"
+          :disabled="invalidForm"
+          class="btn"
+          type="submit"
+        >Log In</button>
       </form>
-      <p class="error" v-if="error">{{error}}</p>
+      <p
+        v-if="error"
+        class="error"
+      >{{ error }}</p>
     </div>
   </div>
 </template>

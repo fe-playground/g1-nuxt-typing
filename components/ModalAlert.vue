@@ -7,7 +7,10 @@
     <div slot="body">{{ alertData }}</div>
 
     <div slot="footer">
-      <button class="modal-default-button" @click="$emit('close')">
+      <button
+        class="modal-default-button"
+        @click="$emit('close')"
+      >
         OK
       </button>
     </div>
@@ -15,13 +18,13 @@
 </template>
 
 <script>
-import Modal from '@/components/Modal.vue'
+import Modal from "@/components/Modal.vue";
 
 export default {
-  props: ['alertData'],
+  props: ["alertData"],
   components: {
     Modal
   }
-}
+};
 </script>
 

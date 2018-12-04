@@ -1,27 +1,27 @@
 <template>
-    <div>
-        <header>
-            <h1>Board</h1>
-        </header>
-        <div class="products">
-            <div class="product">
-                <router-link :to="`/board/card/1`">상품 1</router-link>
-            </div>
-            <div class="product">
-                <router-link :to="`/board/card/2`">상품 2</router-link>
-            </div>
-            <div class="product">
-                <router-link :to="`/board/card/3`">상품 3</router-link>
-            </div>
-            <div class="product">
-                <router-link :to="`/board/card/4`">상품 4</router-link>
-            </div>
-            <div class="product">
-                <router-link :to="`/board/card/5`">상품 5</router-link>
-            </div>
-        </div>
-        <router-view></router-view>
+  <div>
+    <header>
+      <h1>Board</h1>
+    </header>
+    <div class="products">
+      <div class="product">
+        <router-link :to="`/board/card/1`">상품 1</router-link>
+      </div>
+      <div class="product">
+        <router-link :to="`/board/card/2`">상품 2</router-link>
+      </div>
+      <div class="product">
+        <router-link :to="`/board/card/3`">상품 3</router-link>
+      </div>
+      <div class="product">
+        <router-link :to="`/board/card/4`">상품 4</router-link>
+      </div>
+      <div class="product">
+        <router-link :to="`/board/card/5`">상품 5</router-link>
+      </div>
     </div>
+    <router-view></router-view>
+  </div>
 </template>
 
 <style lang="scss" scoped>

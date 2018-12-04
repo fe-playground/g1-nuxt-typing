@@ -1,7 +1,16 @@
 <template>
   <div class="inputBox shadow">
-    <input type="text" v-model="user" :readonly="!isSuccess" @keyup.enter="start" placeholder="사용자 이름 입력" />
-    <span class="startContainer" @click="start">
+    <input
+      v-model="user"
+      :readonly="!isSuccess"
+      type="text"
+      placeholder="사용자 이름 입력"
+      @keyup.enter="start"
+    />
+    <span
+      class="startContainer"
+      @click="start"
+    >
       <i class="fas fa-play btnStart"></i>
     </span>
   </div>
@@ -22,6 +31,11 @@ export default {
       }
     }
   },
+  watch: {
+    isSuccess() {
+      if (this.isSuccess) this.user = "";
+    }
+  },
   methods: {
     ...mapMutations(["startTimer", "insertRank", "setSuccessed"]),
     startTyping() {
@@ -40,11 +54,6 @@ export default {
     },
     checkDuplicatedName(name) {
       return this.rank.some(user => user.user === name);
-    }
-  },
-  watch: {
-    isSuccess() {
-      if (this.isSuccess) this.user = "";
     }
   }
 };

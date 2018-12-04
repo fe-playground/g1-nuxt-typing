@@ -3,7 +3,10 @@
     <li>
       <router-link to="/login">Login</router-link>
     </li>
-    <li v-if="isAuth"><a href="" @click.prevent="logout">Logout</a></li>
+    <li v-if="isAuth"><a
+        href=""
+        @click.prevent="logout"
+      >Logout</a></li>
     <li>
       <router-link to="/typing">Typing</router-link>
     </li>

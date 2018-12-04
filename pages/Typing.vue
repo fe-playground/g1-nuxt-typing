@@ -16,7 +16,7 @@ import TypingTimer from "@/components/TypingTimer.vue";
 import TypingRank from "@/components/TypingRank.vue";
 
 export default {
-  name: "typing",
+  name: "Typing",
   components: {
     TypingHeader,
     TypingInputUser,
