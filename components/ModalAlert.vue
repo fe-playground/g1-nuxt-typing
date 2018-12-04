@@ -21,9 +21,14 @@
 import Modal from "@/components/Modal.vue";
 
 export default {
-  props: ["alertData"],
   components: {
     Modal
+  },
+  props: {
+    alertData: {
+      type: String,
+      default: ""
+    }
   }
 };
 </script>

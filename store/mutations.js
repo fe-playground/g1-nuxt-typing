@@ -22,6 +22,15 @@ const mutations = {
   setSuccessed(state) {
     state.isSuccess = false;
   },
+  setActiveIdx(state, payload) {
+    state.activeIdx = payload;
+  },
+  setTime(state, payload) {
+    state.time = payload;
+  },
+  setMyTimer(state, payload) {
+    state.myTimer = payload;
+  },
   insertRank(state) {
     const newRank = [
       ...state.rank,
@@ -31,12 +40,6 @@ const mutations = {
       }
     ];
     state.rank = util.sortRank(newRank);
-  },
-  startTimer(state) {
-    state.myTimer = setInterval(() => {
-      state.time++;
-      this.$store.commit("updateRank");
-    }, 1000);
   },
   updateRank(state) {
     const newRank = state.rank.map(user =>
@@ -51,14 +54,6 @@ const mutations = {
     state.isSuccess = true;
     state.user = "";
     state.time = 0;
-  },
-  complete(state) {
-    state.activeIdx++;
-    if (state.activeIdx > state.data.length) {
-      this.$store.commit("stopTimer");
-      this.$store.commit("resetTyping");
-      state.activeIdx = 0;
-    }
   }
 };
 

@@ -17,11 +17,12 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from "vuex";
+import { mapState, mapMutations, mapActions } from "vuex";
 
 export default {
   computed: {
     ...mapState(["isSuccess", "rank"]),
+    ...mapActions(["startTimer"]),
     user: {
       get() {
         return this.$store.state.user;
@@ -37,9 +38,9 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(["startTimer", "insertRank", "setSuccessed"]),
+    ...mapMutations(["insertRank", "setSuccessed"]),
     startTyping() {
-      this.$store.commit("startTimer");
+      this.$store.dispatch("startTimer");
       this.$store.commit("insertRank");
       this.$store.commit("setSuccessed");
     },

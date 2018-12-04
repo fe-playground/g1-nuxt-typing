@@ -27,7 +27,7 @@ export default {
       required: true
     },
     isActive: {
-      type: String,
+      type: Boolean,
       required: true
     }
   },
@@ -49,7 +49,7 @@ export default {
     typing(event) {
       if (this.text === event.target.value) {
         this.isComplete = true;
-        this.$store.commit("complete");
+        this.$store.dispatch("complete");
       }
     }
   }

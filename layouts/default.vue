@@ -48,7 +48,7 @@
       >
         <v-icon>remove</v-icon>
       </v-btn>
-      <v-toolbar-title v-text="title"/>
+      <v-toolbar-title v-text="title" />
       <v-btn
         icon
         @click.stop="rightDrawer = !rightDrawer"
@@ -59,6 +59,11 @@
     <v-content>
       <v-container>
         <nuxt />
+        <ModalAlert
+          v-if="showAlert"
+          :alert-data="alertData"
+          @close="close"
+        />
       </v-container>
     </v-content>
     <v-navigation-drawer
@@ -86,21 +91,45 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        clipped: false,
-        drawer: true,
-        fixed: false,
-        items: [
-          { icon: 'apps', title: 'Welcome', to: '/' },
-          { icon: 'bubble_chart', title: 'Inspire', to: '/inspire' }
-        ],
-        miniVariant: false,
-        right: true,
-        rightDrawer: false,
-        title: 'Vuetify.js'
-      }
+import ModalAlert from "@/components/ModalAlert";
+
+export default {
+  components: {
+    ModalAlert
+  },
+  data() {
+    return {
+      clipped: false,
+      drawer: true,
+      fixed: false,
+      items: [
+        { icon: "home", title: "Home", to: "/" },
+        { icon: "account_box", title: "Login", to: "/login" },
+        { icon: "keyboard", title: "Typing", to: "/typing" },
+        { icon: "view_list", title: "Board", to: "/board" }
+      ],
+      miniVariant: false,
+      right: true,
+      rightDrawer: false,
+      title: "Nuxt 연습",
+      showAlert: false,
+      alertData: null
+    };
+  },
+  created() {
+    this.$EventBus.$on("modal-alert", this.setAlertData);
+  },
+  destroyed() {
+    this.$EventBus.$off("modal-alert");
+  },
+  methods: {
+    setAlertData(alertData) {
+      this.alertData = alertData;
+      this.showAlert = true;
+    },
+    close() {
+      this.showAlert = false;
     }
   }
+};
 </script>
