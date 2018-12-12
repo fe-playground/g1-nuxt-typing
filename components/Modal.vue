@@ -1,6 +1,35 @@
 <template>
   <transition name="modal">
-    <div class="modal-mask">
+    <v-card>
+      <v-card-title
+        class="headline grey lighten-2"
+        primary-title
+      >
+        <slot name="header">
+          default header
+        </slot>
+      </v-card-title>
+
+      <v-card-text>
+        <slot name="body">
+          default body
+        </slot>
+      </v-card-text>
+
+      <v-divider></v-divider>
+
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn
+          color="primary"
+          flat
+          @click="$emit('close')"
+        >
+          OK
+        </v-btn>
+      </v-card-actions>
+    </v-card>
+    <!-- <div class="modal-mask">
       <div class="modal-wrapper">
         <div class="modal-container">
 
@@ -29,7 +58,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </transition>
 </template>
 

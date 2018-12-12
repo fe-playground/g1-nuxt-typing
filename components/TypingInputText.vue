@@ -5,14 +5,14 @@
       :class="{ active: isActive}"
       class="inputBox shadow"
     >
-      <input
+      <v-text-field
         ref="input"
         :readonly="isSuccess || !isActive"
         v-model="input"
         type="text"
         placeholder="위 문장을 입력하세요"
         @keyup="typing"
-      />
+      ></v-text-field>
     </div>
   </li>
 </template>

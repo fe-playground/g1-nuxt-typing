@@ -23,6 +23,7 @@ export default {
   methods: {
     fetchData() {
       this.loading = true;
+      console.log(this.loading);
       // cardId로 상품 상세정보 API 호출
       setTimeout(() => {
         this.cardId = this.$route.params.cardId;

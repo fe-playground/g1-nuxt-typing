@@ -59,11 +59,6 @@
     <v-content>
       <v-container>
         <nuxt />
-        <ModalAlert
-          v-if="showAlert"
-          :alert-data="alertData"
-          @close="close"
-        />
       </v-container>
     </v-content>
     <v-navigation-drawer
@@ -87,6 +82,23 @@
     >
       <span>&copy; 2017</span>
     </v-footer>
+    <v-snackbar
+      v-model="snackbarStatus"
+      :color="`cyan darken-2`"
+      :absolute="true"
+      :timeout="3000"
+      :vertical="true"
+      :top="true"
+    >
+      {{ snackbarText }}
+      <v-btn
+        dark
+        flat
+        @click="snackbarStatus = false"
+      >
+        Close
+      </v-btn>
+    </v-snackbar>
   </v-app>
 </template>
 
@@ -112,23 +124,20 @@ export default {
       right: true,
       rightDrawer: false,
       title: "Nuxt 연습",
-      showAlert: false,
-      alertData: null
+      snackbarStatus: false,
+      snackbarText: ""
     };
   },
   created() {
-    this.$EventBus.$on("modal-alert", this.setAlertData);
+    this.$EventBus.$on("alert", this.setAlertData);
   },
   destroyed() {
-    this.$EventBus.$off("modal-alert");
+    this.$EventBus.$off("alert");
   },
   methods: {
     setAlertData(alertData) {
-      this.alertData = alertData;
-      this.showAlert = true;
-    },
-    close() {
-      this.showAlert = false;
+      this.snackbarText = alertData;
+      this.snackbarStatus = true;
     }
   }
 };
